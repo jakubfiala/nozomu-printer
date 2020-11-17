@@ -18,6 +18,10 @@ You can use `~` to refer to the home folder, e.g. `~/mysounds/sound.wav`.
 
 Change the baud rate to match the rate of your printer.
 
+## Usage
+
+Simply open your Terminal, go to your home folder (`cd ~`) and run `./start-printing`.
+
 ## Things to remember
 
 * The text file should be a plain `.txt`
