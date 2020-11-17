@@ -3,9 +3,9 @@ set -o errexit
 set -o nounset
 
 debug=""
-if [[ ! -z $1 ]];
+if [[ "$#" == 1 ]];
 then
-  debug="debug"
+  debug=$1
 fi
 
 config_path="$HOME/printer.config"
