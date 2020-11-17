@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+
+debug=$1
+
+config_path="$HOME/printer.config"
+
+if [[ ! -z $debug ]];
+then
+  config_path="./printer.config"
+fi
+
+config_raw="$(cat $config_path)"
+
+get_config() {
+  key=$1
+  entry=($(echo "$config_raw" | grep "$key" | head -1 | tr ";" "\n"))
+  echo ${entry[1]}
+}
+
+echo "========================"
+echo "STARTING PRINTER PROGRAM"
+echo "========================"
+
+echo ""
+echo "Reading configuration from $config_path"
+echo ""
+
+text_path=$(eval ls "$(get_config 'text-path')")
+sound_path=$(eval ls "$(get_config 'sound-path')")
+interval_minutes="$(get_config 'interval-minutes')"
+printer_baud_rate="$(get_config 'printer-baud-rate')"
+
+echo "Found the following configuration:"
+echo "----------------------------------"
+echo "text path: $text_path"
+echo "sound path: $sound_path"
+echo "interval: $interval_minutes minutes"
+echo "printer baud rate: $printer_baud_rate"
+echo ""
+
+if [[ -z $debug ]];
+then
+  stty -F /dev/serial0 "$printer_baud_rate"
+fi
+
+while [ : ]
+do
+  while read line;
+  do
+    echo ""
+    echo "Playing the sound at $sound_path"
+    aplay -q $sound_path &
+    echo "Printing the text:"
+    echo "------------------"
+    echo $line
+    echo "------------------"
+    if [[ -z $debug ]];
+    then
+      echo -e "\\n$line\\n" > /dev/serial0
+    fi
+    echo ""
+    echo "waiting $interval_minutes minutes from $(date)"
+    sleep "$interval_minutes"m
+  done < "$text_path"
+done
