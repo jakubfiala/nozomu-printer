@@ -62,7 +62,7 @@ do
     fi
     echo ""
     echo "waiting $interval_minutes minutes from $(date)"
-    echo "next playback time will be $(date --date="$interval_minutes minutes")"
+    echo "next print time will be $(date --date="$interval_minutes minutes")"
     sleep "$interval_minutes"m
   done < "$text_path"
 done
