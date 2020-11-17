@@ -67,7 +67,7 @@ do
     echo "------------------"
     if [[ -z $debug ]];
     then
-      echo -e "\\n$line\\n" > /dev/serial0
+      echo -e "\\n\\n$line\\n\\n" > /dev/serial0
     fi
     echo ""
     echo "waiting $interval_minutes minutes from $(date)"
