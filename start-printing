@@ -49,6 +49,11 @@ while [ : ]
 do
   while read line;
   do
+    if [[ -z $line ]];
+    then
+      continue
+    fi
+    echo ""
     echo ""
     echo "Playing the sound at $sound_path"
     aplay -q $sound_path &
