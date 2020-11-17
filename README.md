@@ -5,7 +5,8 @@ This script prints to a printer using the serial port of a Raspberry Pi, and pla
 ## Set up
 
 1. Download the files from GitHub by clicking on the green "Code" button, and "Download ZIP"
-2. Extract the ZIP, and copy `start-printing` and `printer.config` to the home folder on your Pi*
+2. Extract the ZIP, and copy `start-printing`, `printer.service` and `printer.config` to the home folder on your Pi*
+3. In your terminal, run `sudo cp printer.service /etc/systemd/printer.service`
 
 (*) The home folder can be accessed by running `cd ~`. On a default Pi install, it will probably be in `/home/pi`.
 
