@@ -20,5 +20,6 @@ Change the baud rate to match the rate of your printer.
 
 ## Things to remember
 
+* The text file should be a plain `.txt`
 * The printer will print one line of the text file at a time. So format it so that each paragraph is entirely on one line.
 * Make sure the sound file is a valid WAV file. You can export it as WAV for example in Audacity (File > Export > Export as WAV).
