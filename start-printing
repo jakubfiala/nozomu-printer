@@ -2,7 +2,11 @@
 set -o errexit
 set -o nounset
 
-debug=$1
+debug=""
+if [[ ! -z $1 ]];
+then
+  debug="debug"
+fi
 
 config_path="$HOME/printer.config"
 
